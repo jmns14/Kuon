@@ -9,6 +9,7 @@
   "author": "ZyDeaM",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "colors": "^1.4.0",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",

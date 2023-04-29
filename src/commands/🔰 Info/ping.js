@@ -10,7 +10,7 @@ module.exports = {
                         name: client.user.username,
                         iconURL: client.user.displayAvatarURL()
                     })
-                    .setDescription(`🏓 Pong!\n📨 Mensaje: \`${Math.abs(Date.now() - message.createdTimestamp)}ms\`\n🧪 API: \`${client.ws.ping}ms\``)
+                    .setDescription(`🏓 Pong!\n📨 Mensaje: \`${Math.abs(Date.now() - message.createdTimestamp)}ms\`\n🧪 Websocket: \`${client.ws.ping}ms\``)
                     .setTimestamp(Date.now())
                     .setFooter({
                         text: `v${process.env.VERSION}`

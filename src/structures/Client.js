@@ -24,7 +24,11 @@ module.exports = class extends Client {
             repliedUser: false,
         },
         presence: {
-            activities: [{ name: `🦊 | ${process.env.PREFIX}help`, type: ActivityType[process.env.STATUS_TYPE] }],
+            activities: [{
+                name: `🦊 | /help`,
+                type: ActivityType.Streaming,
+                url: `${process.env.TWITCH_CHANNEL}`
+            }],
             status: PresenceUpdateStatus.Online
         }
     }) {

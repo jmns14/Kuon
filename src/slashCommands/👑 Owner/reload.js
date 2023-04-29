@@ -14,7 +14,6 @@ module.exports = {
                 )
     ),
     OWNER: true,
-
     async execute(client, interaction, prefix) {
         let args = interaction.options.getString("modulo");
         let opcion = "Comandos, Eventos y Handlers";
