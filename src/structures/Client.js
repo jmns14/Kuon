@@ -25,7 +25,7 @@ module.exports = class extends Client {
         },
         presence: {
             activities: [{
-                name: `🦊 | /help`,
+                name: `🦊 /help`,
                 type: ActivityType.Streaming,
                 url: `${process.env.TWITCH_CHANNEL}`
             }],
@@ -50,11 +50,11 @@ module.exports = class extends Client {
         await this.loadCommands();
         await this.loadSlashCommands();
 
-        this.login(process.env.BOT_TOKEN)
+        this.login(process.env.BOT_TOKEN);
     }
 
     async loadCommands() {
-        console.log(`(${process.env.PREFIX}) Cargando Comandos`.yellow)
+        console.log(`(${process.env.PREFIX}) Cargando Comandos`.yellow);
         await this.commands.clear();
 
         const RUTA_ARCHIVOS = await this.utils.loadFiles("/src/commands");
@@ -76,7 +76,7 @@ module.exports = class extends Client {
     }
 
     async loadSlashCommands() {
-        console.log(`(/) Cargando Comandos`.yellow)
+        console.log(`(/) Cargando Comandos Diagonales`.yellow)
         await this.slashCommands.clear();
         this.slashArray = [];
 
@@ -86,20 +86,27 @@ module.exports = class extends Client {
                 try {
                     const COMANDO = require(rutaArchivo);
                     const NOMBRE_COMANDO = rutaArchivo.split("\\").pop().split("/").pop().split(".")[0];
-                    COMANDO.CMD.name = NOMBRE_COMANDO;
 
-                    if (NOMBRE_COMANDO) this.slashCommands.set(NOMBRE_COMANDO, COMANDO);
-                    this.slashArray.push(COMANDO.CMD.toJSON());
+                    if (COMANDO.SUBCMD) {
+                        COMANDO.SUBCMD.name = COMANDO.CMDNAME;
+                        if (COMANDO.CMDNAME) this.slashCommands.set(COMANDO.CMDNAME, COMANDO);
+                        this.slashArray.push(COMANDO.SUBCMD.toJSON());
+                    } else {
+                        COMANDO.CMD.name = NOMBRE_COMANDO;
+                        if (NOMBRE_COMANDO) this.slashCommands.set(NOMBRE_COMANDO, COMANDO);
+                        this.slashArray.push(COMANDO.CMD.toJSON());
+                    }
+
                 } catch (error) {
                     console.log(`ERROR AL CARGAR EL ARCHIVO ${rutaArchivo}`.bgRed);
                     console.log(error)
                 }
             })
         }
-        console.log(`(/) ${this.slashCommands.size} Comandos Cargados`.green)
+        console.log(`(/) ${this.slashCommands.size} Comandos Diagonales Cargados`.green)
         if (this?.application?.commands) {
             this.application.commands.set(this.slashArray);
-            console.log(`(/) ${this.slashCommands.size} Comandos Publicados`.green)
+            console.log(`(/) ${this.slashCommands.size} Comandos Diagonales Publicados`.green)
         }
     }
 

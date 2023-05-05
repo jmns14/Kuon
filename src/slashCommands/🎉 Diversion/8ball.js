@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     CMD: new SlashCommandBuilder()
-        .setDescription('🎉 → Pregunta a la bola mágica de Kuon')
+        .setDescription('🎉 → Deja que la bola mágica prediga tu futuro')
         .addStringOption(option =>
             option.setName('pregunta')
                 .setDescription('La pregunta que quieres hacer')

@@ -5,7 +5,7 @@ module.exports = client => {
 
     if (client?.application?.commands) {
         client.application.commands.set(client.slashArray);
-        console.log(`(/) ${client.slashCommands.size} Comandos Publicados`.green)
+        console.log(`(/) ${client.slashCommands.size} Comandos Diagonales Publicados`.green)
     }
 
     setInterval(() => {
